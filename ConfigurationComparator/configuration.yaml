@@ -1,0 +1,15 @@
+Prod:
+  api_client_secret: "Your Client Secret" # Taken from the API User created on the Controller
+  api_client_username: "Your API User" # Taken from the API User created on the Controller
+  controller_account: "Account name " # SaaS Controller Account name
+  controller_url: "https://your_prod_controller_url.saas.appdynamics.com" # SaaS Controller URL, with https://
+  app_name: "Prod_app_Name"
+  eum_app_name: "Eum App Name"
+
+Staging:
+  api_client_secret: "Your Client Secret"
+  api_client_username: "Your API User"
+  controller_account: "Account name"
+  controller_url: "https://your_stagingController_url.saas.appdynamics.com"
+  app_name: "Staging_app_Name"
+  eum_app_name: "Eum App Name"
