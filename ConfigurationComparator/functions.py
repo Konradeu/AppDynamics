@@ -1,6 +1,4 @@
 import threading
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 import requests
 import asyncio
 
@@ -17,12 +15,7 @@ def restGetCall(controllerUrl, authentication_token, api):
 
 async def asyncRestGetCall(controllerUrl, authentication_token, api):
     requestGetUrL = controllerUrl + '/controller' + api + 'output=JSON'
-    session = requests.Session()
-    retry = Retry(connect=5, backoff_factor=0.5)
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount('http://', adapter)
-    session.mount('https://', adapter)
-    DataResponse = await asyncio.to_thread(session.get, requestGetUrL, headers={"Authorization": "Bearer " + authentication_token})
+    DataResponse = await asyncio.to_thread(requests.get, requestGetUrL, headers={"Authorization": "Bearer " + authentication_token})
     return DataResponse.json()
 
 def getAppID(controllerURL, appName, authentication_token):
@@ -54,12 +47,7 @@ def getBtRules(controllerURL, appID, authentication_token):
 # Function for getting Response time, to check whether a BT has load or nor for the getBTs function
 async def getBtMetric(controllerURL, appName, tierName, btName, timeInMin, authentication_token):
     requestGetURL = controllerURL + '/controller/rest/applications/' + appName + '/metric-data?output=JSON&metric-path=Business%20Transaction%20Performance%7CBusiness%20Transactions%7C' + tierName + '%7C'+ btName + '%7CAverage%20Response%20Time%20%28ms%29&time-range-type=BEFORE_NOW&duration-in-mins=' + str(timeInMin)
-    session = requests.Session()
-    retry = Retry(connect=5, backoff_factor=0.5)
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount('http://', adapter)
-    session.mount('https://', adapter)
-    metricDataResponse = await asyncio.to_thread(session.get,requestGetURL, headers={"Authorization": "Bearer " + authentication_token})
+    metricDataResponse = await asyncio.to_thread(requests.get,requestGetURL, headers={"Authorization": "Bearer " + authentication_token})
     metrics = metricDataResponse.json()
     if len(metrics) == 0:
         return 'No'
@@ -469,3 +457,7 @@ def fillAndConcatenateDicts(dict1, dict2):
 
 
     return dict1 | dict2 | {'InBothEnvs': is_in_both_envs}
+
+
+
+
