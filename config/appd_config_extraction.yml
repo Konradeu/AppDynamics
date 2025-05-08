@@ -1,0 +1,34 @@
+AppDynamics:
+  SourceController:
+    # Value should be within double quotes and where emails are the NATIVE APPD userid with Admin rights
+    # (Not SAML or LDAP) for it to work ... the username for the '@' put be encode to '%40'..
+    # for example 'myuser@cisco.com' would be 'myuser%40icsco.com'
+    AppdControllerURL: "https://emear-ps-sandbox.saas.appdynamics.com"
+    UserNameAndAccount: "kojakubo_api@emear-ps-sandbox"
+    EncodePassFlag: "False"
+    UserName: "kojakubo_api"
+    Password: ""
+    AccountName: "emear-ps-sandbox"
+    Verify: "cacerts.pem"
+    ProxyFlag : "False"
+    Proxy: "user:password@proxy_ip_or_url:port or proxy_ip_or_url:port"
+  DestinationController:
+    #Value should be within double quotes
+    AppdControllerURL: "https://rdc.saas.appdynamics.com/"
+    UserNameAndAccount: "kojakubo%40cisco.com@rdc"
+    EncodePassFlag : "False"
+    UserName: "kojakubo@cisco.com"
+    Password: ""
+    AccountName: "rdc"
+    btAutoCleanup: "False"
+    Verify: "cacerts.pem"
+    ProxyFlag : "False"
+    Proxy: "user:password@proxy_ip_or_url:port or proxy_ip_or_url:port"
+  DriverFile:
+    ApplicationFile: "application_list.csv"
+    ApplicationExistingFile: "MyList_ApplicationsExisting.csv"
+    DashboardFile: "MyList_Dashboards.csv"
+    ReportFile: "MyList_Reports.csv"
+    AnalyticSearchFile: "MyList_AnalyticSearches.csv"
+
+
